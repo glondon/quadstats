@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteY="58dp" />
 
     <Button
-        android:id="@+id/button_id"
+        android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"

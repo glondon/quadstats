@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button addButton = findViewById(R.id.button_id);
+        final Button addButton = findViewById(R.id.btnSubmit);
         addButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 //TODO validate and process items
