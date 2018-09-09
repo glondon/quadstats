@@ -1,2 +1,2 @@
 # quadstats
-Android App for keeping track of 4plex stats
+Android App for keeping track of completed TODOs.
