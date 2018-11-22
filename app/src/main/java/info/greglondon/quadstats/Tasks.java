@@ -1,10 +1,12 @@
 package info.greglondon.quadstats;
 
+import java.util.Date;
+
 public class Tasks {
 
     private int _id;
     private String _task;
-    //TODO add date property
+    private Date _created_on;
 
     public Tasks(){
 
@@ -22,11 +24,20 @@ public class Tasks {
         this._task = _task;
     }
 
+    public void set_created(Date _created_on) {
+        //TODO will need to parse
+        this._created_on = _created_on;
+    }
+
     public int get_id() {
         return _id;
     }
 
     public String get_task() {
         return _task;
+    }
+
+    public Date get_created_on() {
+        return _created_on;
     }
 }
