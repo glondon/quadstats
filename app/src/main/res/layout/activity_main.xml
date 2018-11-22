@@ -32,4 +32,41 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="16dp" />
 
+    <EditText
+        android:id="@+id/taskInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="300dp"
+        android:ems="10"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <Button
+        android:id="@+id/btnAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnAddClicked"
+        android:text="Add"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="264dp" />
+
+    <Button
+        android:id="@+id/btnDeleteTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnDeleteClicked"
+        android:text="Delete"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="264dp" />
+
+    <EditText
+        android:id="@+id/taskText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="346dp" />
+
 </android.support.constraint.ConstraintLayout>
