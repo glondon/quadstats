@@ -29,9 +29,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASKS);
-        onCreate(db);
-
+        if(i1 == i + i1) {
+            //db.execSQL("ALTER TABLE " + TABLE_TASKS + " ADD COLUMN");
+            //onCreate(db);
+        }
     }
 
     public void addTask(Tasks tasks){
