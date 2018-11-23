@@ -11,8 +11,9 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "tasks.db";
     public static final String TABLE_TASKS = "tasks";
-    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_ID = "id";
     public static final String COLUMN_TASK = "task";
+    public static final String COLUMN_DATE = "created_on";
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
@@ -21,17 +22,19 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_TASKS + "(" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
-                COLUMN_TASK + " TEXT " + ");";
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_TASK + " VARCHAR(100), " +
+                COLUMN_DATE + " DATE DEFAULT CURRENT_DATE " + ")";
 
         db.execSQL(query);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASKS);
-        onCreate(db);
-
+        if(i1 == i + i1) {
+            //db.execSQL("ALTER TABLE " + TABLE_TASKS + " ADD COLUMN");
+            //onCreate(db);
+        }
     }
 
     public void addTask(Tasks tasks){
@@ -44,7 +47,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void deleteTask(String task){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "';");
+        db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "'");
     }
 
     public String dbToString(){
