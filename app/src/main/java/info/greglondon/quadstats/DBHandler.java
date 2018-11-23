@@ -31,7 +31,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        if(i1 == i + i1) {
+        if(i1 == i + 1) {
             //db.execSQL("ALTER TABLE " + TABLE_TASKS + " ADD COLUMN");
             //onCreate(db);
         }
