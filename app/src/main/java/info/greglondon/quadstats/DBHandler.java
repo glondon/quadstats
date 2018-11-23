@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
+import java.util.Date;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -48,6 +49,22 @@ public class DBHandler extends SQLiteOpenHelper {
     public void deleteTask(String task){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "'");
+    }
+
+    public String getTasksByDate(Date d){
+        String dbString = "";
+        SQLiteDatabase db = getWritableDatabase();
+        //TODO formate date 1st
+        String q = "SELECT * FROM " + TABLE_TASKS + " WHERE " + COLUMN_DATE + " = '" + d + "'";
+        Cursor c = db.rawQuery(q, null);
+        c.moveToFirst();
+        while(!c.isAfterLast()){
+            if(c.getString(c.getColumnIndex(COLUMN_DATE)) != null){
+                dbString += c.getString(c.getColumnIndex(COLUMN_TASK)) + " " +
+                        c.getString(c.getColumnIndex(COLUMN_DATE)) + "\n";
+            }
+        }
+        return dbString;
     }
 
     public String dbToString(){

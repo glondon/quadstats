@@ -24,7 +24,7 @@ public class Tasks {
         this._task = _task;
     }
 
-    public void set_created(Date _created_on) {
+    public void set_created_on(Date _created_on) {
         //TODO will need to parse
         this._created_on = _created_on;
     }
