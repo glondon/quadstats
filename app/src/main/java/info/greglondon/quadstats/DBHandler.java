@@ -79,8 +79,8 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public String dbToString(){
+        String dbString = "";
         try{
-            String dbString = "";
             SQLiteDatabase db = getWritableDatabase();
             String query = "SELECT * FROM " + TABLE_TASKS;
 
@@ -92,10 +92,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 }
             }
             db.close();
-            return dbString;
         }catch(Exception e){
             Log.d(TAG, e.toString());
         }
-
+        return dbString;
     }
 }
