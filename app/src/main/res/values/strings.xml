@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">QuadStats</string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
+    <string name="add_task">Add Task</string>
+    <string name="listed_tasks">Listed Tasks</string>
 </resources>
