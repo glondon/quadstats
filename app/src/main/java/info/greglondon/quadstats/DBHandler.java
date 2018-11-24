@@ -43,19 +43,18 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
-    public void addTask(Tasks tasks){
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_TASK, tasks.get_task());
-        SQLiteDatabase db = getWritableDatabase();
+    public void addTask(Tasks task){
+
         try{
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_TASK, task.get_task());
+            SQLiteDatabase db = getWritableDatabase();
             db.insert(TABLE_TASKS, null,values);
+            db.close();
 
         } catch (SQLiteException e){
             Log.d(TAG, e.toString());
         }
-
-        db.close();
-
     }
 
     public void deleteTask(String task){
