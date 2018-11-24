@@ -1,7 +1,7 @@
 package info.greglondon.quadstats;
 
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.content.Context;
@@ -50,7 +50,7 @@ public class DBHandler extends SQLiteOpenHelper {
         try{
             db.insert(TABLE_TASKS, null,values);
 
-        } catch (SQLException e){
+        } catch (SQLiteException e){
             Log.d(TAG, e.toString());
         }
 
