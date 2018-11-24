@@ -27,12 +27,17 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //TODO add IF NOT EXISTS
-        String query = "CREATE TABLE " + TABLE_TASKS + "(" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_TASK + " VARCHAR(100), " +
-                COLUMN_DATE + " DATE DEFAULT CURRENT_DATE " + ");";
+        try{
+            String query = "CREATE TABLE IF NOT EXISTS " + TABLE_TASKS + "(" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_TASK + " VARCHAR(100), " +
+                    COLUMN_DATE + " DATE DEFAULT CURRENT_DATE " + ");";
 
-        db.execSQL(query);
+            db.execSQL(query);
+        }catch(SQLiteException e){
+            Log.d(TAG, e.toString());
+        }
+
     }
 
     @Override
@@ -58,10 +63,16 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public void deleteTask(String task){
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "';");
-    }
+        try{
+            SQLiteDatabase db = getWritableDatabase();
+            db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "';");
+            db.close();
+        }catch(SQLiteException e){
+            Log.d(TAG, e.toString());
+        }
 
+    }
+    /*
     public String getTasksByDate(Date d){
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
@@ -77,12 +88,12 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         return dbString;
     }
-
+    */
     public String dbToString(){
         String dbString = "";
         try{
             SQLiteDatabase db = getWritableDatabase();
-            String query = "SELECT * FROM " + TABLE_TASKS;
+            String query = "SELECT * FROM " + TABLE_TASKS + ";";
 
             Cursor c = db.rawQuery(query, null);
             c.moveToFirst();
