@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     EditText taskInput;
     TextView taskText;
     DBHandler dbHandler;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnAddClicked(View view){
         //TODO add validation
-        Tasks task = new Tasks(taskInput.getText().toString());
-        dbHandler.addTask(task);
-        printDB();
+        try{
+            Tasks task = new Tasks(taskInput.getText().toString());
+            dbHandler.addTask(task);
+            printDB();
+        } catch (Exception e){
+            Log.d(TAG, e.toString());
+        }
+
+
     }
 
     public void printDB() {

@@ -1,10 +1,13 @@
 package info.greglondon.quadstats;
 
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
+import android.util.Log;
+
 import java.util.Date;
 
 public class DBHandler extends SQLiteOpenHelper {
@@ -15,6 +18,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_TASK = "task";
     public static final String COLUMN_DATE = "created_on";
+    private static final String TAG = "DB";
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
@@ -22,10 +26,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //TODO add IF NOT EXISTS
         String query = "CREATE TABLE " + TABLE_TASKS + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_TASK + " VARCHAR(100), " +
-                COLUMN_DATE + " DATE DEFAULT CURRENT_DATE " + ")";
+                COLUMN_DATE + " DATE DEFAULT CURRENT_DATE " + ");";
 
         db.execSQL(query);
     }
@@ -42,13 +47,20 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_TASK, tasks.get_task());
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_TASKS, null,values);
+        try{
+            db.insert(TABLE_TASKS, null,values);
+
+        } catch (SQLException e){
+            Log.d(TAG, e.toString());
+        }
+
         db.close();
+
     }
 
     public void deleteTask(String task){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "'");
+        db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "';");
     }
 
     public String getTasksByDate(Date d){
