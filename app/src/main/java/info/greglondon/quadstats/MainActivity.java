@@ -55,8 +55,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void printDB() {
-        String dbString = dbHandler.dbToString();
-        taskText.setText(dbString);
-        taskInput.setText("");
+        try{
+            String dbString = dbHandler.dbToString();
+            taskText.setText(dbString);
+            taskInput.setText("");
+        }catch(Exception e){
+            Log.d(TAG, e.toString());
+        }
+
     }
 }

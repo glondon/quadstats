@@ -79,18 +79,23 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public String dbToString(){
-        String dbString = "";
-        SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_TASKS;
+        try{
+            String dbString = "";
+            SQLiteDatabase db = getWritableDatabase();
+            String query = "SELECT * FROM " + TABLE_TASKS;
 
-        Cursor c = db.rawQuery(query, null);
-        c.moveToFirst();
-        while(!c.isAfterLast()){
-            if(c.getString(c.getColumnIndex("task")) != null){
-                dbString += c.getString(c.getColumnIndex("task")) + "\n";
+            Cursor c = db.rawQuery(query, null);
+            c.moveToFirst();
+            while(!c.isAfterLast()){
+                if(c.getString(c.getColumnIndex("task")) != null){
+                    dbString += c.getString(c.getColumnIndex("task")) + "\n";
+                }
             }
+            db.close();
+            return dbString;
+        }catch(Exception e){
+            Log.d(TAG, e.toString());
         }
-        db.close();
-        return dbString;
+
     }
 }
