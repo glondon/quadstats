@@ -35,7 +35,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
             db.execSQL(query);
         }catch(SQLiteException e){
-            Log.d(TAG, e.toString());
+            Log.v(TAG, e.toString());
         }
 
     }
@@ -58,7 +58,7 @@ public class DBHandler extends SQLiteOpenHelper {
             db.close();
 
         } catch (SQLiteException e){
-            Log.d(TAG, e.toString());
+            Log.v(TAG, e.toString());
         }
     }
 
@@ -68,7 +68,7 @@ public class DBHandler extends SQLiteOpenHelper {
             db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "';");
             db.close();
         }catch(SQLiteException e){
-            Log.d(TAG, e.toString());
+            Log.v(TAG, e.toString());
         }
 
     }
@@ -104,7 +104,7 @@ public class DBHandler extends SQLiteOpenHelper {
             }
             db.close();
         }catch(Exception e){
-            Log.d(TAG, e.toString());
+            Log.v(TAG, e.toString());
         }
         return dbString;
     }

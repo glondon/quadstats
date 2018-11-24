@@ -10,7 +10,7 @@ import android.util.Log;
 public class MainActivity extends AppCompatActivity {
 
     EditText taskInput;
-    EditText taskText;
+    TextView taskText;
     DBHandler dbHandler;
     private static final String TAG = "MainActivity";
 
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         taskInput = (EditText) findViewById(R.id.taskInput);
-        taskText = (EditText) findViewById(R.id.taskText);
+        taskText = (TextView) findViewById(R.id.taskText);
         dbHandler = new DBHandler(this,null,null,1);
 
         printDB();
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             dbHandler.addTask(task);
             printDB();
         } catch (Exception e){
-            Log.d(TAG, e.toString());
+            Log.v(TAG, e.toString());
         }
 
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             taskText.setText(dbString);
             taskInput.setText("");
         }catch(Exception e){
-            Log.d(TAG, e.toString());
+            Log.v(TAG, e.toString());
         }
 
     }

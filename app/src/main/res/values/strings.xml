@@ -4,4 +4,5 @@
     <string name="delete">Delete</string>
     <string name="add_task">Add Task</string>
     <string name="listed_tasks">Listed Tasks</string>
+    <string name="enter_a_string_add_task">Enter a @string/add_task</string>
 </resources>
