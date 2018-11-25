@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         //TODO update to delete by id
         String inputText = taskInput.getText().toString();
         dbHandler.deleteTask(inputText);
+        showMessage("Success", "Task deleted");
+        taskInput.setText("");
     }
 
     public void btnAddClicked(View view){
