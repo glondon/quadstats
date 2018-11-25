@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         taskText = (TextView) findViewById(R.id.taskText);
         dbHandler = new DBHandler(this,null,null,1);
 
-        printDB();
+        //TODO printDB causing issues - fix
+        //printDB();
 
         /*
         addButton.setOnClickListener(new View.OnClickListener(){
@@ -46,9 +47,12 @@ public class MainActivity extends AppCompatActivity {
         try{
             Tasks task = new Tasks(taskInput.getText().toString());
             dbHandler.addTask(task);
-            printDB();
+            //TODO fix printDB()
+            //printDB();
+            taskText.setText("Item added");
         } catch (Exception e){
             Log.v(TAG, e.toString());
+
         }
 
 
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             taskInput.setText("");
         }catch(Exception e){
             Log.v(TAG, e.toString());
+            taskText.setText("printDB Failed");
         }
 
     }
