@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.util.Log;
+import android.app.AlertDialog;
+import android.database.Cursor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO printDB causing issues - fix
         //printDB();
+        //getAllTasks(DBHandler db);
 
         /*
         addButton.setOnClickListener(new View.OnClickListener(){
@@ -44,20 +47,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnAddClicked(View view){
         //TODO add validation
-        try{
-            Tasks task = new Tasks(taskInput.getText().toString());
-            dbHandler.addTask(task);
-            //TODO fix printDB()
-            //printDB();
-            taskText.setText("Item added");
-        } catch (Exception e){
-            Log.v(TAG, e.toString());
 
-        }
-
+        Tasks task = new Tasks(taskInput.getText().toString());
+        dbHandler.addTask(task);
+        //TODO fix printDB()
+        //printDB();
+        //taskText.setText("Item added");
+        showMessage("Success", "Task added");
+        taskInput.setText("");
 
     }
-
+    /*
     public void printDB() {
         try{
             String dbString = dbHandler.dbToString();
@@ -68,5 +68,31 @@ public class MainActivity extends AppCompatActivity {
             taskText.setText("printDB Failed");
         }
 
+    }
+    */
+
+    public void showMessage(String title, String msg){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.show();
+    }
+
+    public void getAllTasks(DBHandler db){
+        Cursor res = db.getAllTasks();
+        if(res.getCount() == 0) {
+            showMessage("Error","Nothing found");
+            return;
+        }
+
+        StringBuffer buffer = new StringBuffer();
+        while (res.moveToNext()) {
+            buffer.append("ID :"+ res.getString(0)+"\n");
+            buffer.append("Task :"+ res.getString(1)+"\n");
+        }
+
+        // Show all data
+        showMessage("Tasks", buffer.toString());
     }
 }

@@ -65,7 +65,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void deleteTask(String task){
         try{
             SQLiteDatabase db = getWritableDatabase();
-            db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "';");
+            db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "'");
             db.close();
         }catch(SQLiteException e){
             Log.v(TAG, e.toString());
@@ -89,23 +89,11 @@ public class DBHandler extends SQLiteOpenHelper {
         return dbString;
     }
     */
-    public String dbToString(){
-        String dbString = "";
-        try{
-            SQLiteDatabase db = getWritableDatabase();
-            String query = "SELECT * FROM " + TABLE_TASKS + ";";
-
-            Cursor c = db.rawQuery(query, null);
-            c.moveToFirst();
-            while(!c.isAfterLast()){
-                if(c.getString(c.getColumnIndex("task")) != null){
-                    dbString += c.getString(c.getColumnIndex("task")) + "\n";
-                }
-            }
-            db.close();
-        }catch(Exception e){
-            Log.v(TAG, e.toString());
-        }
-        return dbString;
+    public Cursor getAllTasks(){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_TASKS;
+        Cursor c = db.rawQuery(query, null);
+        db.close();
+        return c;
     }
 }
