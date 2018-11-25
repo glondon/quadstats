@@ -14,7 +14,7 @@
         android:width="300dp"
         android:contentDescription="@string/add_task"
         android:ems="10"
-        android:hint="@string/enter_a_string_add_task"
+        android:hint="@string/enter_task"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
