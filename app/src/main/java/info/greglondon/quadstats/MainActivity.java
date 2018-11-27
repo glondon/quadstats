@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO printDB causing issues - fix
         //printDB();
-        //getAllTasks(DBHandler db);
+        //TODO fix this method
+        //getAllTasks(dbHandler);
 
         /*
         addButton.setOnClickListener(new View.OnClickListener(){
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         StringBuffer buffer = new StringBuffer();
         while (res.moveToNext()) {
-            buffer.append("ID :"+ res.getString(0)+"\n");
+            //buffer.append("ID :"+ res.getString(0)+"\n");
             buffer.append("Task :"+ res.getString(1)+"\n");
         }
 
