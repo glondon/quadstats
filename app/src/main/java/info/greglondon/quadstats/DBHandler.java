@@ -52,7 +52,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         try{
             ContentValues values = new ContentValues();
-            values.put(COLUMN_TASK, task.get_task());
+            values.put(COLUMN_TASK, task.getTask());
             SQLiteDatabase db = getWritableDatabase();
             db.insert(TABLE_TASKS, null,values);
             db.close();
