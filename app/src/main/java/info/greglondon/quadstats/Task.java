@@ -2,13 +2,13 @@ package info.greglondon.quadstats;
 
 import java.util.Date;
 
-public class Tasks {
+public class Task {
 
     private int id;
     private String task;
     private String createdOn;
 
-    public Tasks(int id, String task, String createdOn) {
+    public Task(int id, String task, String createdOn) {
         this.id = id;
         this.task = task;
         this.createdOn = createdOn;

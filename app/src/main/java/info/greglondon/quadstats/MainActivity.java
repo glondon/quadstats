@@ -50,16 +50,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void btnAddClicked(View view){
-        //TODO add validation
+    public boolean btnAddClicked(View view){
+        String value = taskInput.getText().toString().trim();
+        if(value.length() == 0){
+            showMessage("FAILURE", "No task entered");
+            return false;
+        }
+        if(value.length() > 100){
+            showMessage("FAILURE", "Task too long");
+            return false;
+        }
 
-        Tasks task = new Tasks(0, taskInput.getText().toString().trim(), "");
+        Task task = new Task(0, value, "");
         db.addTask(task);
         //TODO fix printDB()
         //printDB();
         //taskText.setText("Item added");
         showMessage("Success", "Task added");
         taskInput.setText("");
+        return true;
 
     }
     /*

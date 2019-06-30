@@ -48,7 +48,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
-    public void addTask(Tasks task){
+    public void addTask(Task task){
 
         try{
             ContentValues values = new ContentValues();
