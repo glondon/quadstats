@@ -5,4 +5,5 @@
     <string name="add_task">Add Task</string>
     <string name="listed_tasks">Listed Tasks</string>
     <string name="enter_task">Enter a Task</string>
+    <string name="title_activity_tasks">TasksActivity</string>
 </resources>

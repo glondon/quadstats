@@ -48,7 +48,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
-    public void addTask(Tasks task){
+    public void addTask(Task task){
 
         try{
             ContentValues values = new ContentValues();
@@ -93,7 +93,6 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_TASKS;
         Cursor c = db.rawQuery(query, null);
-        db.close();
         return c;
     }
 }
