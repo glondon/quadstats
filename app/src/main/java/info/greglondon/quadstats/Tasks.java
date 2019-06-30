@@ -4,42 +4,37 @@ import java.util.Date;
 
 public class Tasks {
 
-    //private int _id;
-    private String _task;
-    //private Date _created_on;
+    private int id;
+    private String task;
+    private String createdOn;
 
-    public Tasks(){
-
-    }
-
-    public Tasks(String task) {
-        this._task = task;
-    }
-    /*
-    public void set_id(int _id) {
-        this._id = _id;
-    }
-    */
-
-    public void set_task(String _task) {
-        this._task = _task;
-    }
-    /*
-    public void set_created_on(Date _created_on) {
-        //TODO will need to parse
-        this._created_on = _created_on;
+    public Tasks(int id, String task, String createdOn) {
+        this.id = id;
+        this.task = task;
+        this.createdOn = createdOn;
     }
 
-    public int get_id() {
-        return _id;
+    public int getId() {
+        return id;
     }
-    */
-    public String get_task() {
-        return _task;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    /*
-    public Date get_created_on() {
-        return _created_on;
+
+    public String getTask() {
+        return task;
     }
-    */
+
+    public void setTask(String task) {
+        this.task = task;
+    }
+
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+    }
 }

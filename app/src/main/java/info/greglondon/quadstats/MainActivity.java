@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText taskInput;
     TextView taskText;
-    DBHandler dbHandler;
+    DBHandler db;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         taskInput = (EditText) findViewById(R.id.taskInput);
         taskText = (TextView) findViewById(R.id.taskText);
-        dbHandler = new DBHandler(this,null,null,1);
+        db = new DBHandler(this,null,null,1);
 
         //TODO printDB causing issues - fix
         //printDB();
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public void btnDeleteClicked(View view){
         //TODO update to delete by id
         String inputText = taskInput.getText().toString();
-        dbHandler.deleteTask(inputText);
+        db.deleteTask(inputText);
         showMessage("Success", "Task deleted");
         taskInput.setText("");
     }
@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
     public void btnAddClicked(View view){
         //TODO add validation
 
-        Tasks task = new Tasks(taskInput.getText().toString());
-        dbHandler.addTask(task);
+        Tasks task = new Tasks(0, taskInput.getText().toString(), "");
+        db.addTask(task);
         //TODO fix printDB()
         //printDB();
         //taskText.setText("Item added");
@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getAllTasks(){
-        dbHandler = new DBHandler(this,null,null,1);
-        Cursor res = dbHandler.getAllTasks();
+        //db = new DBHandler(this,null,null,1);
+        Cursor res = db.getAllTasks();
         if(res.getCount() == 0) {
             showMessage("Error","Nothing found");
             return;
