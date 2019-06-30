@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_tasks">
 
     <ListView
+        android:id="@+id/taskList"
         android:layout_width="368dp"
         android:layout_height="495dp"
         tools:layout_editor_absoluteX="8dp"

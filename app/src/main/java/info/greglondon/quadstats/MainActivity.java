@@ -1,5 +1,6 @@
 package info.greglondon.quadstats;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
     */
 
     public void btnViewTasksClicked(View view){
-
+        Intent intent = new Intent(MainActivity.this, TasksActivity.class);
+        startActivity(intent);
     }
 
     public boolean btnAddClicked(View view){
@@ -63,9 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
         Task task = new Task(0, value, "");
         db.addTask(task);
-        //TODO fix printDB()
-        //printDB();
-        //taskText.setText("Item added");
         showMessage("Success", "Task added");
         taskInput.setText("");
         return true;

@@ -93,7 +93,6 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_TASKS;
         Cursor c = db.rawQuery(query, null);
-        db.close();
         return c;
     }
 }
