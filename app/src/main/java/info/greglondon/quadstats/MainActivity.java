@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO printDB causing issues - fix
         //printDB();
         //TODO fix this method
-        //getAllTasks(dbHandler);
+        //getAllTasks();
 
         /*
         addButton.setOnClickListener(new View.OnClickListener(){
@@ -82,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public void getAllTasks(DBHandler db){
-        Cursor res = db.getAllTasks();
+    public void getAllTasks(){
+        dbHandler = new DBHandler(this,null,null,1);
+        Cursor res = dbHandler.getAllTasks();
         if(res.getCount() == 0) {
             showMessage("Error","Nothing found");
             return;
