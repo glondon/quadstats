@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.util.Log;
 import android.app.AlertDialog;
 import android.database.Cursor;
@@ -12,7 +11,6 @@ import android.database.Cursor;
 public class MainActivity extends AppCompatActivity {
 
     EditText taskInput;
-    TextView taskText;
     DBHandler db;
     private static final String TAG = "MainActivity";
 
@@ -22,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         taskInput = (EditText) findViewById(R.id.taskInput);
-        taskText = (TextView) findViewById(R.id.taskText);
         db = new DBHandler(this,null,null,1);
 
         //TODO printDB causing issues - fix
