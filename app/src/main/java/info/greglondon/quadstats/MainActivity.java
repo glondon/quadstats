@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
         */
     }
-
+    /*
     public void btnDeleteClicked(View view){
         //TODO update to delete by id
         String inputText = taskInput.getText().toString();
@@ -47,11 +47,16 @@ public class MainActivity extends AppCompatActivity {
         showMessage("Success", "Task deleted");
         taskInput.setText("");
     }
+    */
+
+    public void btnViewTasksClicked(View view){
+
+    }
 
     public void btnAddClicked(View view){
         //TODO add validation
 
-        Tasks task = new Tasks(0, taskInput.getText().toString(), "");
+        Tasks task = new Tasks(0, taskInput.getText().toString().trim(), "");
         db.addTask(task);
         //TODO fix printDB()
         //printDB();

@@ -28,33 +28,20 @@
         android:layout_marginStart="41dp"
         android:layout_marginTop="40dp"
         android:onClick="btnAddClicked"
-        android:text="@string/add"
+        android:text="Add Task"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskInput" />
 
     <Button
-        android:id="@+id/btnDeleteTask"
+        android:id="@+id/btnViewTasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="42dp"
         android:layout_marginRight="42dp"
         android:layout_marginTop="40dp"
-        android:onClick="btnDeleteClicked"
-        android:text="@string/delete"
+        android:onClick="btnViewTasksClicked"
+        android:text="View Tasks"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskInput" />
-
-    <TextView
-        android:id="@+id/taskText"
-        android:layout_width="wrap_content"
-        android:layout_height="93dp"
-        android:layout_marginBottom="194dp"
-        android:layout_marginTop="193dp"
-        android:width="300dp"
-        android:contentDescription="@string/listed_tasks"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/taskInput" />
 
 </android.support.constraint.ConstraintLayout>
