@@ -12,6 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class TasksActivity extends AppCompatActivity {
@@ -43,6 +44,10 @@ public class TasksActivity extends AppCompatActivity {
         else{
             while(data.moveToNext()){
                 tasks.add(data.getString(1));
+                tasks.add(Integer.toString(data.getInt(0)));
+                //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //String strDate = dateFormat.format(data.getString(2));
+                //tasks.add(strDate);
                 ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tasks);
                 listView.setAdapter(listAdapter);
             }
