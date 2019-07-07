@@ -6,8 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
+import java.sql.PreparedStatement;
 import java.util.Date;
 
 public class DBHandler extends SQLiteOpenHelper {
@@ -62,11 +64,13 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
-    public void deleteTask(String task){
+    public void deleteTask(int id){
         try{
+            String sql = "DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_ID + " = ?";
             SQLiteDatabase db = getWritableDatabase();
-            db.execSQL("DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_TASK + " = '" + task + "'");
-            db.close();
+            SQLiteStatement stmt = db.compileStatement(sql);
+            stmt.bindLong(1, id);
+            stmt.executeUpdateDelete();
         }catch(SQLiteException e){
             Log.v(TAG, e.toString());
         }
