@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
@@ -31,12 +32,13 @@ public class CustomAdapter extends ArrayAdapter<Task> {
         TextView taskView = (TextView) rowView.findViewById(R.id.taskInput);
         TextView dateView = (TextView) rowView.findViewById(R.id.taskDate);
         TextView idView = (TextView) rowView.findViewById(R.id.taskId);
+        ImageView deleteView = (ImageView) rowView.findViewById(R.id.taskDelete);
 
         taskView.setText(itemsArrayList.get(position).getTask());
         dateView.setText(itemsArrayList.get(position).getCreatedOn());
-        idView.setText(String.valueOf(itemsArrayList.get(position).getId()));
+        idView.setText(String.valueOf(itemsArrayList.get(position).getId())); //TODO may not need
+        deleteView.setId(itemsArrayList.get(position).getId());
 
         return rowView;
     }
-
 }
