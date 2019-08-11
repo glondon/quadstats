@@ -18,10 +18,11 @@ import android.app.ListActivity;
 public class TasksActivity extends ListActivity {
 
     DBHandler db;
+    CustomAdapter adapter;
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        CustomAdapter adapter = new CustomAdapter(this, generateData());
+        adapter = new CustomAdapter(this, generateData());
         setListAdapter(adapter);
     }
 
