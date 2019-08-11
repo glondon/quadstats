@@ -64,15 +64,17 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
-    public void deleteTask(int id){
+    public boolean deleteTask(int id){
         try{
             String sql = "DELETE FROM " + TABLE_TASKS + " WHERE " + COLUMN_ID + " = ?";
             SQLiteDatabase db = getWritableDatabase();
             SQLiteStatement stmt = db.compileStatement(sql);
             stmt.bindLong(1, id);
             stmt.executeUpdateDelete();
+            return true;
         }catch(SQLiteException e){
             Log.v(TAG, e.toString());
+            return false;
         }
 
     }
