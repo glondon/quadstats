@@ -31,7 +31,7 @@ public class TasksActivity extends ListActivity {
         db = new DBHandler(this,null,null,1);
         Cursor data = db.getAllTasks();
         if(data.getCount() == 0)
-            Toast.makeText(TasksActivity.this, "No tasks found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TasksActivity.this, "No tasks found", Toast.LENGTH_LONG).show();
         else{
             while(data.moveToNext())
                 tasks.add(new Task(data.getInt(0), data.getString(1), data.getString(2)));

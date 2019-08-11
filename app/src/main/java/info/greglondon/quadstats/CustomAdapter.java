@@ -1,6 +1,8 @@
 package info.greglondon.quadstats;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,13 +48,29 @@ public class CustomAdapter extends ArrayAdapter<Task> {
         deleteView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db = new DBHandler(context,null,null, 1);
-                //TODO add confirm you want to delete
-                int id = deleteView.getId();
-                String msg;
-                msg = db.deleteTask(id) ? "Deleted Task" : "Problem Deleting Task";
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                //TODO refresh list immediately after deletion
+                AlertDialog.Builder b = new AlertDialog.Builder(context);
+                b.setTitle("Confirm Deletion");
+                b.setMessage("Are you sure?");
+                b.setCancelable(false);
+                b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        db = new DBHandler(context,null,null, 1);
+                        int id = deleteView.getId();
+                        String msg;
+                        msg = db.deleteTask(id) ? "Deleted Task" : "Problem Deleting Task";
+                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                        //TODO refresh list immediately after deletion
+                    }
+                });
+                b.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                b.show();
 
             }
         });
