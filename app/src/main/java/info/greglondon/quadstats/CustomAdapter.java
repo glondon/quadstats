@@ -61,6 +61,14 @@ public class CustomAdapter extends ArrayAdapter<Task> {
                         msg = db.deleteTask(id) ? "Deleted Task" : "Problem Deleting Task";
                         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
                         //TODO refresh list immediately after deletion
+                        try{
+                            TasksActivity.adapter.notifyDataSetChanged(); //TODO not working
+                        }
+                        catch (Throwable e){
+                            e.getMessage();
+                        }
+
+
                     }
                 });
                 b.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
