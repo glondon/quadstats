@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class CustomAdapter extends ArrayAdapter<Task> {
@@ -60,14 +59,9 @@ public class CustomAdapter extends ArrayAdapter<Task> {
                         String msg;
                         msg = db.deleteTask(id) ? "Deleted Task" : "Problem Deleting Task";
                         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                        //TODO refresh list immediately after deletion
-                        try{
-                            TasksActivity.adapter.notifyDataSetChanged(); //TODO not working
-                        }
-                        catch (Throwable e){
-                            e.getMessage();
-                        }
-
+                        //TODO refresh list immediately after deletion (not working)
+                        TasksActivity ta = new TasksActivity();
+                        ta.refresh();
 
                     }
                 });

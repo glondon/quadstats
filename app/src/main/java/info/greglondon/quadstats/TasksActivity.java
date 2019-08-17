@@ -12,18 +12,16 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
-
 import android.app.ListActivity;
 
 public class TasksActivity extends ListActivity {
 
     DBHandler db;
-    public static CustomAdapter adapter;
+    private CustomAdapter adapter;
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        adapter = new CustomAdapter(this, generateData());
-        setListAdapter(adapter);
+        refresh();
     }
 
     private ArrayList<Task> generateData(){
@@ -38,6 +36,14 @@ public class TasksActivity extends ListActivity {
         }
 
         return tasks;
+    }
+
+    public void refresh()
+    {
+        //adapter.notifyDataSetChanged();
+        adapter = new CustomAdapter(this, generateData());
+        setListAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
 }
