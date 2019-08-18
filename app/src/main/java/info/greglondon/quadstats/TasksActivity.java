@@ -21,7 +21,8 @@ public class TasksActivity extends ListActivity {
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        refresh();
+        adapter = new CustomAdapter(this, generateData());
+        setListAdapter(adapter);
     }
 
     private ArrayList<Task> generateData(){
@@ -37,12 +38,9 @@ public class TasksActivity extends ListActivity {
 
         return tasks;
     }
-
-    public void refresh()
+    //TODO note, not using
+    public void update()
     {
-        //adapter.notifyDataSetChanged();
-        adapter = new CustomAdapter(this, generateData());
-        setListAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 

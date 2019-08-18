@@ -27,7 +27,7 @@ public class CustomAdapter extends ArrayAdapter<Task> {
     }
 
     @Override
-    public View getView(int position, final View convertView, ViewGroup parent) {
+    public View getView(final int position, final View convertView, ViewGroup parent) {
 
         final LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,10 +59,8 @@ public class CustomAdapter extends ArrayAdapter<Task> {
                         String msg;
                         msg = db.deleteTask(id) ? "Deleted Task" : "Problem Deleting Task";
                         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                        //TODO refresh list immediately after deletion (not working)
-                        TasksActivity ta = new TasksActivity();
-                        ta.refresh();
-
+                        //TODO refresh list immediately after deletion (hiding for now)
+                        rowView.setVisibility(View.INVISIBLE);
                     }
                 });
                 b.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
