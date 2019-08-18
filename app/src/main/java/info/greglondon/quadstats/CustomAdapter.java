@@ -17,7 +17,7 @@ public class CustomAdapter extends ArrayAdapter<Task> {
 
     private final Context context;
     private final ArrayList<Task> itemsArrayList;
-    DBHandler db;
+    private DBHandler db;
 
     public CustomAdapter(Context context, ArrayList<Task> itemsArrayList) {
 
@@ -34,10 +34,10 @@ public class CustomAdapter extends ArrayAdapter<Task> {
 
         final View rowView = inflater.inflate(R.layout.content_tasks, parent, false);
 
-        TextView taskView = (TextView) rowView.findViewById(R.id.taskInput);
-        TextView dateView = (TextView) rowView.findViewById(R.id.taskDate);
-        TextView idView = (TextView) rowView.findViewById(R.id.taskId);
-        final ImageView deleteView = (ImageView) rowView.findViewById(R.id.taskDelete);
+        TextView taskView = rowView.findViewById(R.id.taskInput);
+        TextView dateView = rowView.findViewById(R.id.taskDate);
+        TextView idView = rowView.findViewById(R.id.taskId);
+        final ImageView deleteView = rowView.findViewById(R.id.taskDelete);
 
         taskView.setText(itemsArrayList.get(position).getTask());
         dateView.setText(itemsArrayList.get(position).getCreatedOn());

@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
-
 import java.sql.PreparedStatement;
 import java.util.Date;
 
@@ -16,10 +15,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "tasks.db";
-    public static final String TABLE_TASKS = "tasks";
-    public static final String COLUMN_ID = "id";
-    public static final String COLUMN_TASK = "task";
-    public static final String COLUMN_DATE = "created_on";
+    private static final String TABLE_TASKS = "tasks";
+    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_TASK = "task";
+    private static final String COLUMN_DATE = "created_on";
     private static final String TAG = "DB";
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -98,7 +97,6 @@ public class DBHandler extends SQLiteOpenHelper {
     public Cursor getAllTasks(){
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_TASKS;
-        Cursor c = db.rawQuery(query, null);
-        return c;
+        return db.rawQuery(query, null);
     }
 }

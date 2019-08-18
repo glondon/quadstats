@@ -16,7 +16,7 @@ import android.app.ListActivity;
 
 public class TasksActivity extends ListActivity {
 
-    DBHandler db;
+    private DBHandler db;
     private CustomAdapter adapter;
 
     public void onCreate(Bundle icicle) {
