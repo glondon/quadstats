@@ -12,13 +12,13 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
-
 import android.app.ListActivity;
 
 public class TasksActivity extends ListActivity {
 
-    DBHandler db;
-    CustomAdapter adapter;
+    private DBHandler db;
+    private CustomAdapter adapter;
+    private ArrayList<Task> tasks;
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -27,7 +27,7 @@ public class TasksActivity extends ListActivity {
     }
 
     private ArrayList<Task> generateData(){
-        ArrayList<Task> tasks = new ArrayList<Task>();
+        tasks = new ArrayList<Task>();
         db = new DBHandler(this,null,null,1);
         Cursor data = db.getAllTasks();
         if(data.getCount() == 0)

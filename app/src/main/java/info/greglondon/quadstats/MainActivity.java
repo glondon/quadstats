@@ -11,8 +11,8 @@ import android.database.Cursor;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText taskInput;
-    DBHandler db;
+    private EditText taskInput;
+    private DBHandler db;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -20,32 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        taskInput = (EditText) findViewById(R.id.taskInput);
-        db = new DBHandler(this,null,null,1);
-
-        //TODO printDB causing issues - fix
-        //printDB();
-        //TODO fix this method
-        //getAllTasks();
-
-        /*
-        addButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                //TODO validate and process items
-                Log.v("EditText", txtAmount.getText().toString());
-            }
-        });
-        */
+        taskInput = findViewById(R.id.taskInput);
+        db = new DBHandler(this,null,null, 1);
     }
-    /*
-    public void btnDeleteClicked(View view){
-        //TODO update to delete by id
-        String inputText = taskInput.getText().toString();
-        db.deleteTask(inputText);
-        showMessage("Success", "Task deleted");
-        taskInput.setText("");
-    }
-    */
 
     public void btnViewTasksClicked(View view){
         Intent intent = new Intent(MainActivity.this, TasksActivity.class);
@@ -70,19 +47,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
 
     }
-    /*
-    public void printDB() {
-        try{
-            String dbString = dbHandler.dbToString();
-            taskText.setText(dbString);
-            taskInput.setText("");
-        }catch(Exception e){
-            Log.v(TAG, e.toString());
-            taskText.setText("printDB Failed");
-        }
-
-    }
-    */
 
     public void showMessage(String title, String msg){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -90,23 +54,5 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(title);
         builder.setMessage(msg);
         builder.show();
-    }
-
-    public void getAllTasks(){
-        //db = new DBHandler(this,null,null,1);
-        Cursor res = db.getAllTasks();
-        if(res.getCount() == 0) {
-            showMessage("Error","Nothing found");
-            return;
-        }
-
-        StringBuffer buffer = new StringBuffer();
-        while (res.moveToNext()) {
-            //buffer.append("ID :"+ res.getString(0)+"\n");
-            buffer.append("Task :"+ res.getString(1)+"\n");
-        }
-
-        // Show all data
-        showMessage("Tasks", buffer.toString());
     }
 }
