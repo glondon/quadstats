@@ -17,12 +17,12 @@ import android.app.ListActivity;
 public class TasksActivity extends ListActivity {
 
     private DBHandler db;
-    private CustomAdapter adapter;
+    public static TaskAdapter adapter;
     private ArrayList<Task> tasks;
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        adapter = new CustomAdapter(this, generateData());
+        adapter = new TaskAdapter(this, generateData());
         setListAdapter(adapter);
     }
 

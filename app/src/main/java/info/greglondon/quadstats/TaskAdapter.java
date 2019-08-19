@@ -14,13 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-public class CustomAdapter extends ArrayAdapter<Task> {
+public class TaskAdapter extends ArrayAdapter<Task> {
 
     private final Context context;
     private final ArrayList<Task> itemsArrayList;
     private DBHandler db;
 
-    public CustomAdapter(Context context, ArrayList<Task> itemsArrayList) {
+    public TaskAdapter(Context context, ArrayList<Task> itemsArrayList) {
 
         super(context, R.layout.content_tasks, itemsArrayList);
         this.context = context;
@@ -60,8 +60,8 @@ public class CustomAdapter extends ArrayAdapter<Task> {
                         String msg;
                         msg = db.deleteTask(id) ? "Deleted Task" : "Problem Deleting Task";
                         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                        //TODO refresh list immediately after deletion (hiding for now)
-                        rowView.setVisibility(View.INVISIBLE);
+                        TasksActivity.adapter.remove(itemsArrayList.get(position));
+                        TasksActivity.adapter.notifyDataSetChanged();
                     }
                 });
                 b.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
