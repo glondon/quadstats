@@ -14,13 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-public class CustomAdapter extends ArrayAdapter<Task> {
+public class TaskAdapter extends ArrayAdapter<Task> {
 
     private final Context context;
     private final ArrayList<Task> itemsArrayList;
     private DBHandler db;
 
-    public CustomAdapter(Context context, ArrayList<Task> itemsArrayList) {
+    public TaskAdapter(Context context, ArrayList<Task> itemsArrayList) {
 
         super(context, R.layout.content_tasks, itemsArrayList);
         this.context = context;
