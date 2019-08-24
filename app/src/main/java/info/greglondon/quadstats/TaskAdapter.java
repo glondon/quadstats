@@ -56,12 +56,16 @@ public class TaskAdapter extends ArrayAdapter<Task> {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         db = new DBHandler(context,null,null, 1);
-                        int id = deleteView.getId();
                         String msg;
-                        msg = db.deleteTask(id) ? "Deleted Task" : "Problem Deleting Task";
+                        if(db.deleteTask(deleteView.getId())){
+                            msg = "Task Deleted";
+                            TasksActivity.adapter.remove(itemsArrayList.get(position));
+                            TasksActivity.adapter.notifyDataSetChanged();
+                        }
+                        else
+                            msg = "Problem Deleting Task";
+
                         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                        TasksActivity.adapter.remove(itemsArrayList.get(position));
-                        TasksActivity.adapter.notifyDataSetChanged();
                     }
                 });
                 b.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
